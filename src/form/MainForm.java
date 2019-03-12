@@ -6,7 +6,6 @@ import javax.swing.*;
 
 public class MainForm {
     private JButton learning, test;
-    private JPanel panelLeft, panelRight;
     public JPanel panelMain;
     private JTextField field00, field01, field02, field03, field04, field05, field06;
     private JTextField field10, field11, field12, field13, field14, field15, field16;
