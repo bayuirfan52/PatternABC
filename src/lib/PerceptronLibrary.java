@@ -5,7 +5,8 @@ public class PerceptronLibrary {
     private static final double theta = 0.5;
     private static double bias = 0;
     private static double hasil;
-    private static int baris = 0, iteration = 0, output;
+    private static int iteration = -1, output;
+    private static boolean isLoop = false;
     private static double[] bobot = {
             0,0,0,0,0,0,0,
             0,0,0,0,0,0,0,
@@ -20,12 +21,15 @@ public class PerceptronLibrary {
 
     public static String learn(double[][] input, double[] target){
         do {
-            if (iteration != 0) getBobotBias(input[iteration], target[iteration]);
-
+            if (isLoop) getBobotBias(input[iteration], target[iteration]);
+            iteration ++;
             hasil = iteraasiCekHitung(input[iteration]);
             output = cekStatus(hasil);
-            iteration ++;
-        } while (output == target[iteration]);
+            isLoop = output != target[iteration];
+            System.out.println("output : "+ output + ", target : " + target[iteration] + ", iteration : " + iteration);
+        } while (output != target[iteration]);
+
+        iteration ++;
         return "Selesai";
     }
 
@@ -42,8 +46,10 @@ public class PerceptronLibrary {
     private static void getBobotBias(double[] input, double target){
         for (int i = 0; i < input.length; i++){
             bobot[i] = bobot[i] + (alpha * target * input[i]);
-            bias = bias + alpha * target;
+            System.out.println("Bobot["+ i +"] :" + bobot[i]);
         }
+        bias = bias + alpha * target;
+        System.out.println("Bias : "+ bias);
     }
 
     private static int cekStatus(double hasil){
