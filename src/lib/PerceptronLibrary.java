@@ -2,12 +2,28 @@ package lib;
 
 import java.util.Arrays;
 
+/*
+* Perceptron Library
+*
+* For training to the system, please use 2 Dimensional Array of Weight and 1 dimensional Array of target.
+* Insert the W and b input with static function setBobot and setBias.
+* Insert the Alpha and Theta with static function setAlpha and setTheta manually in your program.
+* Use static function "learn" to start learning on the system.
+* Use static function "test" to test your input to the system.
+*
+* This library may include error of logical. Your contribution are needed.
+*
+* Created by bayuirfan52
+* Modified by bayuirfan52 at 24/03/2019, 07.42 WIB
+*
+* */
+
 public class PerceptronLibrary {
     private static double alpha;
     private static double theta;
     private static double bias;
     private static double hasil;
-    private static int iteration = 0, iterationFinal = 0, output;
+    private static int iteration = 0, iterationFinal = 1, output;
     private static double[] bobot;
 
     public static String learn(double[][] input, double[] target){
@@ -15,31 +31,38 @@ public class PerceptronLibrary {
         Boolean[] checkUpdate = new Boolean[input.length];
 
         for (int i = 0; i < checkUpdate.length; i++){
-            checkUpdate[i] = false;
+            checkUpdate[i] = true;
         }
 
         do {
+            if (iteration == input.length) iteration = 0;
+
             hasil = iterasiCekHitung(input[iteration]);
             output = cekStatus(hasil);
-            if (output != target[iteration]) {
-                isLoop = true;
+
+            System.out.println(" ");
+            System.out.println("iterasi ke : " + iterationFinal);
+            System.out.println("pola ke : " + (iteration + 1));
+            System.out.println("output : " + output + ", target : " + target[iteration]);
+
+            isLoop = output != target[iteration];
+            if (isLoop) {
+                System.out.println("----------Get Bobot Bias------------");
                 getBobotBias(input[iteration], target[iteration]);
-            }
-            else {
-                if (iteration == 5) iteration = 0;
-                iteration ++;
-                hasil = iterasiCekHitung(input[iteration]);
-                output = cekStatus(hasil);
-                isLoop = output != target[iteration];
-                System.out.println("isLoop : " + isLoop);
             }
 
             checkUpdate[iteration] = isLoop;
-
-            isLoopFinal = Arrays.stream(checkUpdate).allMatch(Boolean::booleanValue);
-
-            System.out.println("iteration : " + iterationFinal + ", output : " + output + ", target : " + target[iteration] + ", isLoopFinal :" + isLoopFinal + ", Check Update" + Arrays.toString(checkUpdate));
+            System.out.println("Value : " + isLoop);
+            iteration ++;
             iterationFinal++;
+            System.out.println("Array Check status : " + Arrays.toString(checkUpdate));
+            isLoopFinal = Arrays.stream(checkUpdate).noneMatch(val -> val);
+
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
         }while (!isLoopFinal);
         return "Selesai";
     }
@@ -57,10 +80,11 @@ public class PerceptronLibrary {
     private static void getBobotBias(double[] input, double target){
         for (int i = 0; i < input.length; i++){
             bobot[i] = bobot[i] + (alpha * target * input[i]);
-            System.out.println("Bobot["+ i +"] :" + bobot[i]);
         }
         bias = bias + alpha * target;
+        System.out.println("Bobot : " + Arrays.toString(bobot));
         System.out.println("Bias : "+ bias);
+        System.out.println("Target : "+ target);
     }
 
     private static int cekStatus(double hasil){

@@ -10,7 +10,7 @@ public class MainForm {
     public JPanel panelMain;
     private JLabel Iteration;
     private JLabel statusLabel;
-    private JTextField AplhaTF;
+    private JTextField AlphaTF;
     private JTextField ThetaTF;
     private JButton a11;
     private JButton a12;
@@ -75,6 +75,7 @@ public class MainForm {
     private JButton a95;
     private JButton a96;
     private JButton a97;
+    private JButton clear;
 
     private double[] data =
             {
@@ -92,7 +93,8 @@ public class MainForm {
     private String result;
     private double theta;
     private double sum;
-    private double[] target = {1,-1,-1,1,-1,-1};
+    private double[] target =
+            { 1,-1,-1, 1,-1,-1};
     private double[] bobot =
             {
                  0, 0, 0, 0, 0, 0, 0,
@@ -178,14 +180,15 @@ public class MainForm {
 
     public MainForm(){
         learning.addActionListener(e -> {
-            PerceptronLibrary.setAlpha(Double.valueOf(AplhaTF.getText()));
+            PerceptronLibrary.setAlpha(Double.valueOf(AlphaTF.getText()));
             PerceptronLibrary.setTheta(Double.valueOf(ThetaTF.getText()));
             PerceptronLibrary.setBobot(bobot);
             PerceptronLibrary.setBias(0);
             result = PerceptronLibrary.learn(dataLearning,target);
-            Iteration.setText(String.valueOf(PerceptronLibrary.getIteration()));
             statusLabel.setText(result);
         });
+
+        Iteration.setText(String.valueOf(PerceptronLibrary.getIteration()));
 
         //Baris 1
         a11.addActionListener(v -> data[0] = changeColor(a11));
@@ -217,7 +220,7 @@ public class MainForm {
         //Baris 4
         a41.addActionListener(v -> data[21] = changeColor(a41));
         a42.addActionListener(v -> data[22] = changeColor(a42));
-        a43.addActionListener(v -> data[23] = changeColor(a34));
+        a43.addActionListener(v -> data[23] = changeColor(a43));
         a44.addActionListener(v -> data[24] = changeColor(a44));
         a45.addActionListener(v -> data[25] = changeColor(a45));
         a46.addActionListener(v -> data[26] = changeColor(a46));
@@ -268,11 +271,83 @@ public class MainForm {
         a96.addActionListener(v -> data[61] = changeColor(a96));
         a97.addActionListener(v -> data[62] = changeColor(a97));
 
-
-
         test.addActionListener(e -> {
             result = testHasil(data);
             statusLabel.setText(result);
+        });
+
+        clear.addActionListener(e -> {
+            data[0] = resetColor(a11);
+            data[1] = resetColor(a12);
+            data[2] = resetColor(a13);
+            data[3] = resetColor(a14);
+            data[4] = resetColor(a15);
+            data[5] = resetColor(a16);
+            data[6] = resetColor(a17);
+
+            data[7] = resetColor(a21);
+            data[8] = resetColor(a22);
+            data[9] = resetColor(a23);
+            data[10] = resetColor(a24);
+            data[11] = resetColor(a25);
+            data[12] = resetColor(a26);
+            data[13] = resetColor(a27);
+
+            data[14] = resetColor(a31);
+            data[15] = resetColor(a32);
+            data[16] = resetColor(a33);
+            data[17] = resetColor(a34);
+            data[18] = resetColor(a35);
+            data[19] = resetColor(a36);
+            data[20] = resetColor(a37);
+
+            data[21] = resetColor(a41);
+            data[22] = resetColor(a42);
+            data[23] = resetColor(a43);
+            data[24] = resetColor(a44);
+            data[25] = resetColor(a45);
+            data[26] = resetColor(a46);
+            data[27] = resetColor(a47);
+
+            data[28] = resetColor(a51);
+            data[29] = resetColor(a52);
+            data[30] = resetColor(a53);
+            data[31] = resetColor(a54);
+            data[32] = resetColor(a55);
+            data[33] = resetColor(a56);
+            data[34] = resetColor(a57);
+
+            data[35] = resetColor(a61);
+            data[36] = resetColor(a62);
+            data[37] = resetColor(a63);
+            data[38] = resetColor(a64);
+            data[39] = resetColor(a65);
+            data[40] = resetColor(a66);
+            data[41] = resetColor(a67);
+
+            data[42] = resetColor(a71);
+            data[43] = resetColor(a72);
+            data[44] = resetColor(a73);
+            data[45] = resetColor(a74);
+            data[46] = resetColor(a75);
+            data[47] = resetColor(a76);
+            data[48] = resetColor(a77);
+
+            data[49] = resetColor(a81);
+            data[50] = resetColor(a82);
+            data[51] = resetColor(a83);
+            data[52] = resetColor(a84);
+            data[53] = resetColor(a85);
+            data[54] = resetColor(a86);
+            data[55] = resetColor(a87);
+
+            data[56] = resetColor(a91);
+            data[57] = resetColor(a92);
+            data[58] = resetColor(a93);
+            data[59] = resetColor(a94);
+            data[60] = resetColor(a95);
+            data[61] = resetColor(a96);
+            data[62] = resetColor(a97);
         });
     }
 
@@ -280,14 +355,20 @@ public class MainForm {
         int value;
         if (button.getBackground() == Color.BLACK){
             button.setBackground(Color.WHITE);
-            value = 1;
+            value = -1;
         }
         else {
             button.setBackground(Color.BLACK);
-            value = -1;
+            value = 1;
         }
 
         return value;
+    }
+
+    private int resetColor(JButton button){
+        button.setBackground(Color.WHITE);
+
+        return -1;
     }
 
     private String testHasil(double[] data){
@@ -306,6 +387,8 @@ public class MainForm {
         else {
             status = "Bukan A";
         }
+
+        System.out.println("cek output : " + (cekOutput(hasil) == 1));
         return status;
     }
 
@@ -313,7 +396,8 @@ public class MainForm {
         double output;
         if (input > theta){
             output = 1;
-        } else {
+        }
+        else {
             output = -1;
         }
         return output;
