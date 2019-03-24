@@ -35,7 +35,10 @@ public class PerceptronLibrary {
         }
 
         do {
-            if (iteration == input.length) iteration = 0;
+            if (iteration == input.length) {
+                iteration = 0;
+                iterationFinal++;
+            }
 
             hasil = iterasiCekHitung(input[iteration]);
             output = cekStatus(hasil);
@@ -54,7 +57,6 @@ public class PerceptronLibrary {
             checkUpdate[iteration] = isLoop;
             System.out.println("Value : " + isLoop);
             iteration ++;
-            iterationFinal++;
             System.out.println("Array Check status : " + Arrays.toString(checkUpdate));
             isLoopFinal = Arrays.stream(checkUpdate).noneMatch(val -> val);
 
