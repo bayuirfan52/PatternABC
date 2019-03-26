@@ -91,7 +91,6 @@ public class MainForm {
             };
 
     private String result;
-    private double theta;
     private double sum;
     private double[] target =
             { 1,-1,-1, 1,-1,-1};
@@ -373,10 +372,9 @@ public class MainForm {
     private String testHasil(double[] data){
         double[] bobot = PerceptronLibrary.getBobot();
         double bias = PerceptronLibrary.getBias();
-        theta = Double.valueOf(ThetaTF.getText());
 
         for (int i = 0; i < data.length; i++){
-            sum = data[i] * bobot[i];
+            sum = sum + data[i] * bobot[i];
         }
         double hasil = bias + sum;
         String status;
