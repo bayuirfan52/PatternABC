@@ -23,7 +23,7 @@ public class PerceptronLibrary {
     private static double theta;
     private static double bias;
     private static double hasil;
-    private static int iteration = 0, iterationFinal = 1, output;
+    private static int iteration = 0, iterationFinal = 0, output;
     private static double[] bobot;
 
     public static String learn(double[][] input, double[] target){

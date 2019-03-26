@@ -184,7 +184,7 @@ public class MainForm {
             PerceptronLibrary.setBobot(bobot);
             PerceptronLibrary.setBias(0);
             result = PerceptronLibrary.learn(dataLearning,target);
-            Iteration.setText(String.valueOf(PerceptronLibrary.getIteration()));
+            Iteration.setText("Epoch = " + PerceptronLibrary.getIteration());
             statusLabel.setText(result);
         });
 
