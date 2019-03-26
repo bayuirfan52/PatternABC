@@ -61,11 +61,11 @@ public class PerceptronLibrary {
             isLoopFinal = Arrays.stream(checkUpdate).noneMatch(val -> val);
 
             try {
-                Thread.sleep(1000);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }while (!isLoopFinal);
+        }while (!isLoopFinal && iterationFinal != 100);
         return "Selesai";
     }
 

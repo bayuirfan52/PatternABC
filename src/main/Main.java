@@ -9,6 +9,7 @@ public class Main {
         JFrame frame = new JFrame("ABC Detection");
         frame.setContentPane(new MainForm().panelMain);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(null);
         frame.pack();
         frame.setVisible(true);
     }
