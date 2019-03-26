@@ -65,14 +65,14 @@ public class PerceptronLibrary {
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
-        }while (!isLoopFinal && iterationFinal != 100);
+        }while (!isLoopFinal);
         return "Selesai";
     }
 
     private static double iterasiCekHitung(double[] input){
         double sum = 0;
         for (int i = 0; i < input.length; i++){
-            sum = input[i] * bobot[i];
+            sum = sum + input[i] * bobot[i];
         }
         hasil = bias + sum;
 
@@ -86,10 +86,9 @@ public class PerceptronLibrary {
         bias = bias + alpha * target;
         System.out.println("Bobot : " + Arrays.toString(bobot));
         System.out.println("Bias : "+ bias);
-        System.out.println("Target : "+ target);
     }
 
-    private static int cekStatus(double hasil){
+    public static int cekStatus(double hasil){
         if (hasil > theta){
             output = 1;
         }

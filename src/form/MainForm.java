@@ -185,10 +185,9 @@ public class MainForm {
             PerceptronLibrary.setBobot(bobot);
             PerceptronLibrary.setBias(0);
             result = PerceptronLibrary.learn(dataLearning,target);
+            Iteration.setText(String.valueOf(PerceptronLibrary.getIteration()));
             statusLabel.setText(result);
         });
-
-        Iteration.setText(String.valueOf(PerceptronLibrary.getIteration()));
 
         //Baris 1
         a11.addActionListener(v -> data[0] = changeColor(a11));
@@ -381,25 +380,14 @@ public class MainForm {
         }
         double hasil = bias + sum;
         String status;
-        if (cekOutput(hasil) == 1){
+        if (PerceptronLibrary.cekStatus(hasil) == 1){
             status = "A";
         }
         else {
             status = "Bukan A";
         }
 
-        System.out.println("cek output : " + (cekOutput(hasil) == 1));
+        System.out.println("cek output : " + (PerceptronLibrary.cekStatus(hasil)));
         return status;
-    }
-
-    private double cekOutput(double input){
-        double output;
-        if (input > theta){
-            output = 1;
-        }
-        else {
-            output = -1;
-        }
-        return output;
     }
 }
