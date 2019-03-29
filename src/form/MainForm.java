@@ -5,6 +5,11 @@ import lib.PerceptronLibrary;
 import javax.swing.*;
 import java.awt.*;
 
+/*
+* Form class
+* This class is place of All Event of the program from form are already created.
+* */
+
 public class MainForm {
     private JButton learning, test;
     public JPanel panelMain;
@@ -77,6 +82,7 @@ public class MainForm {
     private JButton a97;
     private JButton clear;
 
+    //Initialize the data array from -1
     private double[] data =
             {
                 -1,-1,-1,-1,-1,-1,-1,
@@ -92,8 +98,12 @@ public class MainForm {
 
     private String result;
     private double sum;
+
+    //Array of Target. Type the target with starting from pattern of input. If the input are 6 pattern, type 6 pattern of the target too.
     private double[] target =
             { 1,-1,-1, 1,-1,-1};
+
+    //Initialize the W
     private double[] bobot =
             {
                  0, 0, 0, 0, 0, 0, 0,
@@ -106,6 +116,8 @@ public class MainForm {
                  0, 0, 0, 0, 0, 0, 0,
                  0, 0, 0, 0, 0, 0, 0
             };
+
+    //Input for learning to the program. This Array pattern are called by input in PerceptronLibrary.
     private double[][] dataLearning = {
             {
                 -1,-1, 1, 1,-1,-1,-1,
@@ -178,6 +190,7 @@ public class MainForm {
     };
 
     public MainForm(){
+        //Learning buttton Event.
         learning.addActionListener(e -> {
             PerceptronLibrary.setAlpha(Double.valueOf(AlphaTF.getText()));
             PerceptronLibrary.setTheta(Double.valueOf(ThetaTF.getText()));
@@ -269,11 +282,17 @@ public class MainForm {
         a96.addActionListener(v -> data[61] = changeColor(a96));
         a97.addActionListener(v -> data[62] = changeColor(a97));
 
+        /*
+        * Test Button Event
+        * Test your inputs to check, is the program is understand target of the input?
+        *
+        * */
         test.addActionListener(e -> {
             result = testHasil(data);
             statusLabel.setText(result);
         });
 
+        // Clear Button Event
         clear.addActionListener(e -> {
             data[0] = resetColor(a11);
             data[1] = resetColor(a12);
@@ -369,6 +388,10 @@ public class MainForm {
         return -1;
     }
 
+    /*
+    * Testing function
+    * Check the inputs have been understand with the program
+    * */
     private String testHasil(double[] data){
         double[] bobot = PerceptronLibrary.getBobot();
         double bias = PerceptronLibrary.getBias();

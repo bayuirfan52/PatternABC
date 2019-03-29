@@ -26,17 +26,32 @@ public class PerceptronLibrary {
     private static int iteration = 0, iterationFinal = 0, output;
     private static double[] bobot;
 
+    /*
+    * Learn function
+    * Use with static method. This algorithm can be read on the Artificial Neural Network module.
+    * Insert input with double 2D array and double 1D array of target.
+    *
+    * */
+
     public static String learn(double[][] input, double[] target){
-        boolean isLoop, isLoopFinal;
+        //This variable is used to checking when output from activation function is same with target or not.
+        boolean isLoop;
+        //This variable is used to checking when all of W can be use to input pattern to get output that same with the target.
+        boolean isLoopFinal;
+        //Array for checking all pattern of W are can be used to get same output with target from input
         Boolean[] checkUpdate = new Boolean[input.length];
 
+        //Initialize the Array
         for (int i = 0; i < checkUpdate.length; i++){
             checkUpdate[i] = true;
         }
 
+        //Iteration for all of process (Main Method)
         do {
+            //Go back the iteration index after iteration = index of input
             if (iteration == input.length) {
                 iteration = 0;
+                // Add 1 Epoch value
                 iterationFinal++;
             }
 
@@ -69,6 +84,10 @@ public class PerceptronLibrary {
         return "Selesai";
     }
 
+    /*
+    * Get the net value
+    * Read the ANN module
+    * */
     private static double iterasiCekHitung(double[] input){
         double sum = 0;
         for (int i = 0; i < input.length; i++){
@@ -79,6 +98,10 @@ public class PerceptronLibrary {
         return hasil;
     }
 
+    /*
+    * Update all values of W and b
+    * This function is reference to ANN module of Perceptron
+    * */
     private static void getBobotBias(double[] input, double target){
         for (int i = 0; i < input.length; i++){
             bobot[i] = bobot[i] + (alpha * target * input[i]);
@@ -88,6 +111,11 @@ public class PerceptronLibrary {
         System.out.println("Bias : "+ bias);
     }
 
+    /*
+    * Activation function [ f(net) ]
+    * In this requirement of program, just used to get output with 1 and -1
+    *
+    * */
     public static int cekStatus(double hasil){
         if (hasil > theta){
             output = 1;
@@ -97,6 +125,14 @@ public class PerceptronLibrary {
         }
         return output;
     }
+
+    /*
+    * Functions to set All main value of the program to get compatible W and b
+    *
+    * set W, use setBobot function
+    * set b, use setBias function
+    * Alpha and Theta, you can read the name of set function.
+    * */
 
     public static void setAlpha(double alpha){
         PerceptronLibrary.alpha = alpha;
@@ -113,6 +149,14 @@ public class PerceptronLibrary {
     public static void setBobot(double[] bobot){
         PerceptronLibrary.bobot = bobot;
     }
+
+    /*
+    * Getter function.
+    * Use this functions to get value of W, b, and Epoch from another class.
+    * W is getBobot
+    * b is getBias
+    * Epoch is getIteration
+    * */
 
     public static double[] getBobot(){
         return bobot;
