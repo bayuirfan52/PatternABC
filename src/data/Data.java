@@ -99,6 +99,10 @@ public class Data {
         Data.dataLearning[index] = dataLearning;
     }
 
+    public static void setDataLearning(double[][] dataLearning){
+        Data.dataLearning = dataLearning;
+    }
+
     public static double[] getTarget() {
         return target;
     }

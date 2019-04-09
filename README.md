@@ -16,6 +16,6 @@ Gunakan source code ini dengan bijak. Source code yang ada hanya ditujukan untuk
 Aplikasi IDE yang direkomendasikan untuk membuka source code ini adalah IntelliJ IDEA.
 Gunakan aplikasi IDE dari Jetbrains ini untuk membuka source code ini.
 
-Untuk mengunduh aplikasi IntelliJ IDEa, silakan kunjungi situs penyedianya.
+Untuk mengunduh aplikasi IntelliJ IDEA, silakan kunjungi situs penyedianya.
 
 Tidak disarankan untuk menggunakan NetBeans. 

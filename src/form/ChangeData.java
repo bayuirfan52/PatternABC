@@ -77,6 +77,7 @@ public class ChangeData extends JFrame{
     private JRadioButton pola6;
     private JButton submit;
     public JPanel mainDialog;
+    private JButton addDefaultPattern;
     ButtonGroup patternGroup;
 
     //Initialize the data array from -1
@@ -128,6 +129,13 @@ public class ChangeData extends JFrame{
         patternGroup.add(pola4);
         patternGroup.add(pola5);
         patternGroup.add(pola6);
+
+        addDefaultPattern.addActionListener(v -> {
+            this.setVisible(false);
+            DefaultPattern defaultPattern = new DefaultPattern();
+            defaultPattern.setTitle("Select Default Pattern");
+            defaultPattern.setVisible(true);
+        });
 
         //Baris 1
         a11.addActionListener(v -> data[0] = changeColor(a11));
