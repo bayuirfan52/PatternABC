@@ -323,10 +323,10 @@ public class MainForm {
         double hasil = bias + sum;
         String status;
         if (PerceptronLibrary.cekStatus(hasil) == 1){
-            status = "Sesuai Target";
+            status = Data.getStatusGoal();
         }
         else {
-            status = "Tidak Sesuai Target";
+            status = Data.getStatusFail();
         }
 
         System.out.println("cek output : " + (PerceptronLibrary.cekStatus(hasil)));

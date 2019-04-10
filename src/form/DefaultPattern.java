@@ -27,12 +27,18 @@ public class DefaultPattern extends JFrame{
         select.addActionListener(v -> {
             if (rbABC.isSelected()){
                 Data.setDataLearning(PatternLibrary.getAbc());
+                Data.setStatusGoal(PatternLibrary.getAbcStatus()[0]);
+                Data.setStatusFail(PatternLibrary.getAbcStatus()[1]);
             }
             else if (rbBCD.isSelected()){
                 Data.setDataLearning(PatternLibrary.getBcd());
+                Data.setStatusGoal(PatternLibrary.getBcdStatus()[0]);
+                Data.setStatusFail(PatternLibrary.getBcdStatus()[1]);
             }
             else if (rbCDE.isSelected()){
                 Data.setDataLearning(PatternLibrary.getCde());
+                Data.setStatusGoal(PatternLibrary.getCdeStatus()[0]);
+                Data.setStatusFail(PatternLibrary.getCdeStatus()[1]);
             }
             this.setVisible(false);
         });

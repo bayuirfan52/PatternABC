@@ -166,6 +166,23 @@ public class PatternLibrary {
 
     };
 
+    private static String[] abcStatus = {"A", "Bukan A"};
+    private static String[] bcdStatus = {"B", "Bukan B"};
+
+    public static String[] getAbcStatus() {
+        return abcStatus;
+    }
+
+    public static String[] getBcdStatus() {
+        return bcdStatus;
+    }
+
+    public static String[] getCdeStatus() {
+        return cdeStatus;
+    }
+
+    private static String[] cdeStatus = {"C", "Bukan C"};
+
     public static double[][] getAbc() {
         return abc;
     }

@@ -91,6 +91,25 @@ public class Data {
                     0, 0, 0, 0, 0, 0, 0
             };
 
+    private static String statusGoal = "A";
+    private static String statusFail = "Bukan A";
+
+    public static String getStatusGoal() {
+        return statusGoal;
+    }
+
+    public static void setStatusGoal(String statusGoal) {
+        Data.statusGoal = statusGoal;
+    }
+
+    public static String getStatusFail() {
+        return statusFail;
+    }
+
+    public static void setStatusFail(String statusFail) {
+        Data.statusFail = statusFail;
+    }
+
     public static double[][] getDataLearning() {
         return dataLearning;
     }
